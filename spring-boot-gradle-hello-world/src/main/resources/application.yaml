@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+pipeline:
+  defaultType: library
+  dict:
+    library: a, b, c
+    container: AA, BB
+

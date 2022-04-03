@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.snow'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // SpringBoot Webflux 依赖
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.1'
+    // 连通 Spring 和 Hasor
+    implementation 'net.hasor:hasor-spring:4.1.7'
+    // DataWay 是 Hasor 生态中的一员
+    implementation 'net.hasor:hasor-dataway:4.1.7'
+
+    // MySQL
+    implementation 'mysql:mysql-connector-java:8.0.22'
+    // JDBC
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.4.1'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

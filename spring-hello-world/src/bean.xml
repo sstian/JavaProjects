@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--配置User对象创建， id: 唯一标识，class: 类全路径（包类），默认执行无参构造函数-->
+    <bean id="user" class="com.snow.User">
+        <!--set方法注入属性, name: 类属性，value: 属性值-->
+        <property name="name" value="XiaoMing"></property>
+
+        <!--字面量-->
+        <!-- 1. null value: null-->
+        <property name="nick">
+            <null/>
+        </property>
+
+        <!-- 2. 属性值包含特殊符号: <<北京>> -->
+        <property name="addr">
+            <value><![CDATA[<<北京>>]]></value>
+        </property>
+    </bean>
+
+    <bean id="userp" class="com.snow.User" p:name="Zhang"></bean>
+
+    <bean id="book" class="com.snow.Book">
+        <constructor-arg name="address" value="China"></constructor-arg>
+        <!-- <constructor-arg index="0" value="Shanghai"></constructor-arg> -->
+    </bean>
+
+    <!--注入属性-外部Bean-->
+    <bean id="userService" class="com.snow.service.UserService">
+        <!--ref: 创建userDao对象Bean标签的id值-->
+        <property name="userDao" ref="userDaoImpl"></property>
+    </bean>
+    <bean id="userDaoImpl" class="com.snow.dao.UserDaoImpl"></bean>
+
+<!--    &lt;!&ndash;注入属性-内部Bean&ndash;&gt;-->
+<!--    <bean id="employee" class="com.snow.bean.Employee">-->
+<!--        &lt;!&ndash;设置普通类型属性&ndash;&gt;-->
+<!--        <property name="ename" value="Jack"></property>-->
+<!--        <property name="gender" value="male"></property>-->
+<!--        &lt;!&ndash;设置对象类型属性&ndash;&gt;-->
+<!--        <property name="department">-->
+<!--            <bean id="department" class="com.snow.bean.Department">-->
+<!--                <property name="dname" value="HR"></property>-->
+<!--            </bean>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+    <!--注入属性-级联Bean-->
+    <bean id="employee" class="com.snow.bean.Employee">
+        <!--设置普通类型属性-->
+        <property name="ename" value="Jack"></property>
+        <property name="gender" value="male"></property>
+        <!--设置对象类型属性-->
+        <property name="department" ref="department"></property>
+        <property name="department.dname" value="Tech"></property>
+    </bean>
+    <bean id="department" class="com.snow.bean.Department">
+        <!--<property name="dname" value="Guard"></property>-->
+    </bean>
+
+    <util:list id="toylist">
+        <value>car</value>
+        <value>doll</value>
+    </util:list>
+
+    <bean id="student" class="com.snow.Student">
+        <property name="courses">
+            <array>
+                <value>Java</value>
+                <value>C++</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>MySQL</value>
+                <value>Oracle</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>Linux</value>
+                <value>Windows</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="PHP" value="php"></entry>
+                <entry key="PYTHON" value="python"></entry>
+            </map>
+        </property>
+        <property name="lists" ref="toylist"></property>
+    </bean>
+
+    <!-- Factory Bean -->
+    <bean id="myBean" class="com.snow.factorybean.MyBean" scope="prototype"></bean>
+
+    <!-- 自动装配 autowire
+     byName: 根据属性名称，注入bean的id值和类属性名一致
+     byType: 根据属性类型，不能有多个同类类型的bean -->
+    <bean id="emp" class="com.snow.bean.Emp" autowire="byName"></bean>
+    <bean id="dept" class="com.snow.bean.Dept"></bean>
+
+</beans>

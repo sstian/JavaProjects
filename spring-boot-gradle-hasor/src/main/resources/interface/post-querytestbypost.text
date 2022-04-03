@@ -1,0 +1,34 @@
+// POST querytestbypost DataQL
+// Parameters {"name":"%犬%"}
+
+import 'net.hasor.dataql.fx.basic.DateTimeUdfSource' as time;
+// 查询动物表中名字中包含犬的数据
+
+
+// 定义一个函数，将函数的查询结果存贮在querydog中
+// @@sql()为插入外部SQL代码，<%  %>为SQl代码区域
+// name为函数的参数，如果想要在SQL使用这个参数，需要使用#{name}来使用
+// #,$,@都为特殊符号，一般情况下用法一致，更多用法可参考官方说明
+var querydog = @@sql(name)<%
+    select * from animal where name like #{name}
+%>
+
+// 定义一个处理updatetime日期格式的函数
+var formatupdatetime = (updatetime)->{
+    return time.format(updatetime, "yyyy-MM-dd HH:mm:ss")
+}
+
+// 返回上述SQL查询到的数据
+// 通过$获取Parameters中的传过来的name 参数值
+// 修改返回报文中的将id换成编号，name 换成动物名称  诸如此类......
+// 查询到的数据包含多个对象，注意格式  [{}]，不然只显示一个
+// 调用日期函数，将Long类型的时间戳输出为格式化的时间
+// dang然也可以定义一个函数来进行处理，如上的formatupdatetime函数
+return querydog(${name})=>[{
+    "编号":id,
+    "动物名称":name,
+    "动物别名":alias,
+    "动物描述":description,
+    "动物信息入机时间":time.format(inputtime, "yyyy-MM-dd HH:mm:ss"),
+    "动物信息更新时间": formatupdatetime(updatetime)
+}]
