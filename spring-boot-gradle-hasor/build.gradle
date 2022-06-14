@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    // SpringBoot Webflux 依赖
+    // SpringBoot Web 依赖
     implementation 'org.springframework.boot:spring-boot-starter-web:2.4.1'
     // 连通 Spring 和 Hasor
     implementation 'net.hasor:hasor-spring:4.1.7'
@@ -19,6 +19,9 @@ dependencies {
 
     // MySQL
     implementation 'mysql:mysql-connector-java:8.0.22'
+    // SQL Server
+//    implementation 'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11'
+
     // JDBC
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.4.1'
 

@@ -11,10 +11,10 @@ HASOR_DATAQL_DATAWAY: true
 HASOR_DATAQL_DATAWAY_ADMIN: true
 
 # dataway  API工作路径（可选，默认：/api/）
-HASOR_DATAQL_DATAWAY_API_URL: /interface/
+HASOR_DATAQL_DATAWAY_API_URL: /api/
 
 # dataway-ui 的工作路径（可选，默认：/interface-ui/）
-HASOR_DATAQL_DATAWAY_UI_URL: /config/
+HASOR_DATAQL_DATAWAY_UI_URL: /interface-ui/
 
 # SQL执行器方言设置（可选，建议设置）
 HASOR_DATAQL_FX_PAGE_DIALECT: mysql
