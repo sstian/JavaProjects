@@ -1,0 +1,14 @@
+{
+  "properties" : { },
+  "id" : "b3c080b0e86f4dc181722cc334d77c45",
+  "name" : "task",
+  "type" : "task",
+  "parentId" : "0",
+  "path" : "/task",
+  "createTime" : 1656513821443,
+  "updateTime" : null,
+  "createBy" : "admin",
+  "updateBy" : null,
+  "paths" : [ ],
+  "options" : [ ]
+}

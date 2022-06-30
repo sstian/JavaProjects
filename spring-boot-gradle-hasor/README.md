@@ -8,6 +8,23 @@ DataQL（Data Query Language）DataQL 是一种查询语言。旨在通过提供
 
 数据的存储根据其业务形式通常是较为简单的，并不适合直接在页面上进行展示。因此开发页面的前端工程师需要为此做大量的工作，这就是 DataQL 极力解决的问题。另外还支持使用SQL来，但是SQL在Dataway中最终也都是转换成DataQL。
 
+## 在线演示地址
+
+http://www.hasor.net/dataway/interface-ui/#/
+
+## Dataway 传参
+1. header
+```
+import 'net.hasor.dataql.fx.web.WebUdfSource' as webData;
+
+return webData.getHeader("name");
+```
+
+2. Parameters: query or request boby
+`{"name":"%犬%"}`
+```
+${name}
+```
 ## 发现
 
 1. url拦截路径 /api/，先到 dataway

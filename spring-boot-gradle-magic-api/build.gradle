@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'com.snow.magicapi'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // SpringBoot Web
+    // implementation "org.springframework.boot:spring-boot-starter-webflux:${sprintBootVersion}"
+
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+    implementation 'org.ssssssss:magic-api-spring-boot-starter:2.0.1'
+    implementation 'org.ssssssss:magic-api-plugin-swagger:2.0.1'
+
+    // MySQL
+    implementation "mysql:mysql-connector-java:8.0.28"
+    // SQL Server
+    // implementation "com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11"
+
+    // JDBC
+    implementation "org.springframework.boot:spring-boot-starter-jdbc:${sprintBootVersion}"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

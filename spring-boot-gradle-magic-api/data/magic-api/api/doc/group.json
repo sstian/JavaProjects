@@ -1,0 +1,14 @@
+{
+  "properties" : { },
+  "id" : "3363a4ef601543c399be4b6691ea3538",
+  "name" : "doc",
+  "type" : "api",
+  "parentId" : "0",
+  "path" : "/",
+  "createTime" : 1656514864712,
+  "updateTime" : null,
+  "createBy" : "admin",
+  "updateBy" : null,
+  "paths" : [ ],
+  "options" : [ ]
+}
