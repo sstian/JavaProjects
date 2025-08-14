@@ -1,4 +1,5 @@
 # Warp Exchange 证券交易系统
+> cannot run!
 
 A simple, super fast, 7x24 exchange.
 
@@ -14,3 +15,11 @@ A simple, super fast, 7x24 exchange.
 ### Tutorial
 
 [从零开始搭建一个7x24小时运行的证券交易所](https://liaoxuefeng.com/books/java/springcloud/)
+
+```cmd
+// 编译
+cd build && mvn clean package
+
+// 启动容器
+cd build && docker-compose up -d
+```
