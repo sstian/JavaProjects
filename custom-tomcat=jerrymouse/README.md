@@ -54,7 +54,7 @@ Jerrymouse Server设计目标如下：
 
 [Chinese Tutorial](https://liaoxuefeng.com/books/jerrymouse/)
 
-# 服务器架构
+# 架构
 设计Jerrymouse Server可以大幅简化为：
 - 仅一个HTTP Connector，不支持HTTPS；
 - 仅支持挂载到/的一个Context，不支持多个Host与多个Context，也只能有一个Web App。

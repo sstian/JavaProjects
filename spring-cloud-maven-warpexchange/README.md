@@ -1,5 +1,5 @@
 # Warp Exchange 证券交易系统
-> cannot run!
+> not run!
 
 A simple, super fast, 7x24 exchange.
 
