@@ -19,6 +19,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import java.net.URI;
 
 /**
+ * Swagger configuration class
  * @author Javen Tian
  * @since 2020/11/12
  */
@@ -40,6 +41,18 @@ public class SpringFoxConfig {
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30)
                 .enable(this.swaggerEnabled)
+                .apiInfo(this.apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    @Bean
+    public Docket createRestApi2() {
+        return new Docket(DocumentationType.OAS_30)
+                .enable(this.swaggerEnabled)
+                .groupName("great") // definition group, default: default
                 .apiInfo(this.apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())

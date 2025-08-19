@@ -17,7 +17,7 @@ public class HelloApplication {
 
     @Bean(name = "initStarter")
     public CommandLineRunner commandLineRunner(ApplicationContext applicationContext) {
-        return args -> log.info(">>> springboot-gradle-swagger is up at " + this.port);
+        return args -> log.info(">>> spring-boot-gradle-swagger is up at " + this.port);
     }
     public static void main(String[] args) {
         SpringApplication.run(HelloApplication.class, args);

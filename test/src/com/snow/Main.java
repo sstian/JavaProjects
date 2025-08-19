@@ -32,7 +32,7 @@ public class Main {
         //System.out.println(first);
 
 
-// 计算周五的日期
+        // 计算周五的日期
         System.out.println("before");
         System.out.println(calendar);
         calendar.add(Calendar.DAY_OF_WEEK, Calendar.SUNDAY - day);
