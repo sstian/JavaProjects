@@ -1,0 +1,80 @@
+plugins {
+    id 'groovy' //必须
+    id 'maven-publish'
+}
+
+group = 'com.snow'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral() //必须
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:4.0.14'
+//    testImplementation platform('org.junit:junit-bom:5.10.0')
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation gradleApi() //必须
+    implementation localGroovy() //必须
+}
+
+//test {
+//    useJUnitPlatform()
+//}
+
+//// 把项目入口设置为src/main/groovy
+//sourceSets {
+//    main {
+//        groovy {
+//            srcDir 'src/main/groovy'
+//        }
+//    }
+//}
+
+// 发布项目到maven仓库中
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            groupId = 'com.snow.plugin' //指定GAV坐标信息
+            artifactId = 'library'
+            version = '1.1'
+            from components.java    //发布jar包
+            // from components.web  //引入war插件，发布war包
+        }
+    }
+    repositories {
+        maven { url "$rootDir/lib/release" }
+
+//        //发布项目到私服中
+//        maven {
+//         name = 'myRepo' //name属性可选,表示仓库名称，url必填
+//         //发布地址:可以是本地仓库或者maven私服
+//         //url = layout.buildDirectory.dir("repo")
+//         //url='http://my.org/repo'
+//         // change URLs to point to your repos, e.g. http://my.org/repo
+//         //认证信息:用户名和密码
+//         credentials {
+//             username = 'joe'
+//             password = 'secret'
+//         }
+//        }
+    }
+}
+
+//---
+//// 执行命令，发布到根project或者maven私服仓库
+// gradle publish
+
+//---
+//// 在其它的项目中使用插件
+//buildscript {
+//    repositories {
+//        maven { url "$rootDir/lib/release" }
+//    }
+//    dependencies {
+//        classpath "com.snow.plugin:library:1.1"
+//    }
+//}
+//
+//apply plugin: 'com.snow.plugin'

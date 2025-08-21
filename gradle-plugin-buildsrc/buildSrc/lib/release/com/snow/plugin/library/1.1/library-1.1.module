@@ -1,0 +1,69 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.snow.plugin",
+    "module": "library",
+    "version": "1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.0.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "library-1.1.jar",
+          "url": "library-1.1.jar",
+          "size": 4325,
+          "sha512": "32d5137ef110e713619086eb452d5746b1af80954a5a70bd3ca550995ed659bea469fd2705bc796a80696cf6ba544574ac193255f8cce43cdd5c5e4bfbeca9b5",
+          "sha256": "2f4028ea9ed41532f96b852250557cb67503e9c357913c534541c6efc6ed86f2",
+          "sha1": "ca250797e88cf101a50bc1aef9aa4900fd2514d1",
+          "md5": "d4b7ea0db9bcf1a59ddfceb9d07e54ca"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.apache.groovy",
+          "module": "groovy",
+          "version": {
+            "requires": "4.0.14"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "library-1.1.jar",
+          "url": "library-1.1.jar",
+          "size": 4325,
+          "sha512": "32d5137ef110e713619086eb452d5746b1af80954a5a70bd3ca550995ed659bea469fd2705bc796a80696cf6ba544574ac193255f8cce43cdd5c5e4bfbeca9b5",
+          "sha256": "2f4028ea9ed41532f96b852250557cb67503e9c357913c534541c6efc6ed86f2",
+          "sha1": "ca250797e88cf101a50bc1aef9aa4900fd2514d1",
+          "md5": "d4b7ea0db9bcf1a59ddfceb9d07e54ca"
+        }
+      ]
+    }
+  ]
+}
