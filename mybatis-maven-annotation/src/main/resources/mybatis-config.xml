@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  
+<!-- 引入外部配置文件。有相同字段时，优先使用外部配置文件的 -->
+  <properties resource="db.properties">
+<!--    <property name="username" value=""/>-->
+<!--    <property name="password" value=""/>-->
+  </properties>
+  
+  <settings>
+<!--    日志配置 -->
+<!--    <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+    <setting name="logImpl" value="SLF4J"/>
+  </settings>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+<!-- 注册mapper -->
+<!-- 方式1. 类的全限定名-->
+<!--  <mappers>-->
+<!--    <mapper class="com.snow.mapper.UserMapper"/>-->
+<!--  </mappers>-->
+<!-- 方式2. 包名-->
+  <mappers>
+    <package name="com.snow.mapper"/>
+  </mappers>
+</configuration>

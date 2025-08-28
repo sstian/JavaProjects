@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+namespace 命名空间的作用有两个，一个是利用更长的全限定名来将不同的语句隔离开来，同时也实现了接口绑定。
+
+namespace的命名必须跟某个接口同名。
+接口中的方法与映射文件中sql语句id应该一一对应。
+-->
+<mapper namespace="com.snow.mapper.UserMapper">
+
+<!--  <select id="getUsers" resultType="com.snow.entity.User">-->
+<!--    select * from User-->
+<!--  </select>-->
+
+<!-- 解决实体类中的属性和数据表中的列的名字不匹配 - 使用结果集映射 ResultMap -->
+  <resultMap id="UserMap" type="com.snow.entity.User">
+<!-- property是实体类中的属性，column是数据表中的列 -->
+    <result property="password" column="pwd"/>
+  </resultMap>
+  <select id="getUsers" resultMap="UserMap">
+    select * from User
+  </select>
+
+  <select id="getUserById" resultMap="UserMap">
+    select * from User where id = #{id}
+  </select>
+
+  <select id="getUserByLike" resultMap="UserMap">
+    <bind name="pattern" value="'%'+value+'%'" />
+    select * from user where name like #{pattern}
+  </select>
+
+  <insert id="addUser" parameterType="com.snow.entity.User">
+    insert into user(id, name, pwd) values (#{id}, #{name}, #{password})
+  </insert>
+
+  <delete id="deleteUser">
+    delete from user where id = #{id}
+  </delete>
+
+  <update id="updateUser" parameterType="com.snow.entity.User">
+    update user set name = #{name},pwd = #{password} where id = #{id}
+  </update>
+
+  <update id="updateUserByMap" parameterType="Map">
+    update user set pwd = #{userpwd} where id = #{userid}
+  </update>
+
+</mapper>

@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(20) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `pwd` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+insert  into `user`(`id`,`name`,`pwd`) values (1,'英杰','123456'),(2,'张三','abcdef'),(3,'李四','987654');
