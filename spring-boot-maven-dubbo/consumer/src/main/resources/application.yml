@@ -1,0 +1,14 @@
+server:
+  port: 8082
+
+dubbo:
+  application:
+    # 当前应用名字
+    name: spring-boot-maven-dubbo-consumer
+    logger: slf4j
+  protocol:
+    name: tri
+    port: -1
+  registry:
+    # 注册中心地址
+    address: zookeeper://127.0.0.1:2181

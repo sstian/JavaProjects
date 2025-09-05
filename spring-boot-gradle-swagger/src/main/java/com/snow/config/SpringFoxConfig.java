@@ -31,12 +31,14 @@ public class SpringFoxConfig {
     @Value("${swagger.enabled}")
     private boolean swaggerEnabled;
 
+    // 重定向
     @Bean
     RouterFunction<ServerResponse> redirectRouterFunction() {
         return RouterFunctions.route(RequestPredicates.GET("/"), request ->
                 ServerResponse.temporaryRedirect(URI.create("/swagger-ui/index.html")).build());
     }
 
+    // api分组1
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30)
@@ -48,6 +50,7 @@ public class SpringFoxConfig {
                 .build();
     }
 
+    // api分组2
     @Bean
     public Docket createRestApi2() {
         return new Docket(DocumentationType.OAS_30)
