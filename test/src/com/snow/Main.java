@@ -2,13 +2,15 @@ package com.snow;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.zone.ZoneOffsetTransition;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.function.*;
+import java.util.stream.LongStream;
 
 public class Main {
     static void print(List al2) {
@@ -157,6 +159,37 @@ public class Main {
         //nam 2022-07-02T07:42:13.872314400-04:00[America/New_York]
         //=============
     }
+    
+    public static void testJUC() {
+//        CompletableFuture.runAsync();
+//        CompletableFuture.supplyAsync();
+//        new ReentrantLock();
+
+//        ArrayBlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(3);
+//
+//        boolean added = blockingQueue.add("a"); // throws IllegalStateException | NullPointerException
+//        boolean removed = blockingQueue.remove("a");
+//        String ele = blockingQueue.element();   // throws NoSuchElementException
+//
+//        boolean offered = blockingQueue.offer("b"); // throws NullPointerException
+//        String ele2 = blockingQueue.poll();
+//        String ele22 = blockingQueue.peek();
+//
+//        boolean offered3 = blockingQueue.offer("d", 2, TimeUnit.SECONDS);   // throws InterruptedException | InterruptedException
+//        String ele3 = blockingQueue.poll(2, TimeUnit.SECONDS);  // throws InterruptedException
+//        String ele33 = blockingQueue.peek();
+//
+//        blockingQueue.put("c"); // throws InterruptedException
+//        String ele4 = blockingQueue.take(); // throws InterruptedException
+
+
+        int processors = Runtime.getRuntime().availableProcessors();
+        System.out.println(processors); // 4
+
+        long sum = LongStream.rangeClosed(0L, 10_0000_0000L).parallel().reduce(0, Long::sum);
+        System.out.println("sum = " + sum);
+        
+    }
 
     public static void main(String[] args) {
 //	    List al1 = new ArrayList();
@@ -166,6 +199,7 @@ public class Main {
         //testDate();
         //outDate();
         //newDate();
-        thisFriday();
+        //thisFriday();
+        testJUC();
     }
 }
