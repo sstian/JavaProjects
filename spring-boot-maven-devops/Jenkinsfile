@@ -1,0 +1,35 @@
+pipeline {
+    // 指定任务在哪个集群节点中执行
+    agent any
+
+    // 声明全局变量
+    environment {
+        key = "value"
+    }
+
+    // 各个阶段
+    stages {
+        stage("pull codes") {
+            echo "pull codes - SUCCESS"
+        }
+        stage("build package") {
+            sh "mvn clean package -DskipTests"
+            echo "build package - SUCCESS"
+        }
+        stage("sonarqube scan") {
+            echo "sonarqube scan - SUCCESS"
+        }
+        stage("build image") {
+            sh '''
+            docker version
+            docker ps
+            '''
+            echo "build image - SUCCESS"
+        }
+    }
+
+    post {
+        success {}
+        failure {}
+    }
+}

@@ -1,0 +1,6 @@
+projectKey=spring-boot-maven-devops
+serverUrl=http://101.132.142.119:9000
+serverVersion=9.2.4.50792
+dashboardUrl=http://101.132.142.119:9000/dashboard?id=spring-boot-maven-devops
+ceTaskId=AZnyxuhZT6-OXQt_LnPl
+ceTaskUrl=http://101.132.142.119:9000/api/ce/task?id=AZnyxuhZT6-OXQt_LnPl
