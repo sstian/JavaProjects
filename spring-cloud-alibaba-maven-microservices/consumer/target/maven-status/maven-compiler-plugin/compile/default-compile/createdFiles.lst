@@ -1,0 +1,3 @@
+com\snow\consumer\controller\ConsumerController.class
+com\snow\consumer\config\WebConfig.class
+com\snow\consumer\ConsumerApplication.class
