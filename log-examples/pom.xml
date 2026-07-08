@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.snow</groupId>
+    <artifactId>log-examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- JCL + JUL -->
+        <!-- JCL 门面 -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+    <!-- JUL 是 JDK 自带，不用加依赖-->
+
+
+<!--    &lt;!&ndash; SLF4J + Log4j2 &ndash;&gt;-->
+<!--    &lt;!&ndash; SLF4J 门面接口 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.slf4j</groupId>-->
+<!--        <artifactId>slf4j-api</artifactId>-->
+<!--        <version>2.0.9</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; Log4j2 核心实现 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.apache.logging.log4j</groupId>-->
+<!--        <artifactId>log4j-core</artifactId>-->
+<!--        <version>2.20.0</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; SLF4J 绑定 Log4j2（桥接） &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.apache.logging.log4j</groupId>-->
+<!--        <artifactId>log4j-slf4j2-impl</artifactId>-->
+<!--        <version>2.20.0</version>-->
+<!--    </dependency>-->
+
+
+    <!-- SLF4J + Logback -->
+    <!-- SLF4J 门面接口 -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.9</version>
+    </dependency>
+    <!-- Logback 核心实现 -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.4.11</version>
+    </dependency>
+    <!-- Logback 与 SLF4J 适配 -->
+    <!-- 说明：logback-classic 已经自动包含了 SLF4J 适配，无需额外配置桥接包 -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.4.11</version>
+    </dependency>
+    <!-- 可选：Lombok 简化写法，直接用 @Slf4j 注解，无需手动创建 Logger -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.30</version>
+        <scope>provided</scope>
+    </dependency>
+
+    </dependencies>
+
+</project>

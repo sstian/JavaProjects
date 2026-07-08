@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- monitorInterval="30"：配置文件修改后30秒自动刷新，无需重启 -->
+<Configuration monitorInterval="30" shutdownHook="disable">
+
+    <!-- 日志变量定义：方便统一修改 -->
+    <Properties>
+        <!-- 日志输出格式 -->
+        <property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+        <!-- 彩色日志格式 -->
+        <property name="COLOR_LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%t] %cyan{%logger{36}} - %msg%n</property>
+        <!-- 日志保存目录 -->
+        <property name="LOG_DIR">logs</property>
+        <!-- 单个日志文件最大大小 -->
+        <property name="FILE_SIZE">100MB</property>
+        <!-- 日志保留天数 -->
+        <property name="MAX_HISTORY">30</property>
+    </Properties>
+
+    <!-- 附录器：定义日志输出方式（控制台、文件） -->
+    <Appenders>
+        <!-- 1. 控制台输出（彩色） -->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${COLOR_LOG_PATTERN}"/>
+            <!-- 控制台只输出INFO及以上 -->
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+        <!-- 2. 所有日志文件（滚动+压缩） -->
+        <RollingFile name="ALL_FILE"
+                     fileName="${LOG_DIR}/app-all.log"
+                     filePattern="${LOG_DIR}/app-all-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!-- 按天切割 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- 按大小切割 -->
+                <SizeBasedTriggeringPolicy size="${FILE_SIZE}"/>
+            </Policies>
+            <!-- 最大保留历史文件数 -->
+            <DefaultRolloverStrategy max="${MAX_HISTORY}" fileIndex="min"/>
+        </RollingFile>
+
+        <!-- 3. 错误级别单独日志（方便排查问题） -->
+        <RollingFile name="ERROR_FILE"
+                     fileName="${LOG_DIR}/app-error.log"
+                     filePattern="${LOG_DIR}/app-error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <!-- 只记录ERROR级别 -->
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${MAX_HISTORY}"/>
+        </RollingFile>
+    </Appenders>
+
+    <!-- 日志记录器：控制包级别、输出目的地 -->
+    <Loggers>
+        <!-- ====================== 自定义包日志级别 ====================== -->
+        <!-- 你的项目包（改成自己的包名） -->
+        <Logger name="com.example" level="debug" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="ALL_FILE"/>
+            <AppenderRef ref="ERROR_FILE"/>
+        </Logger>
+
+        <!-- Spring 框架日志 -->
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="ALL_FILE"/>
+        </Logger>
+
+        <!-- MyBatis / MyBatis-Plus -->
+        <Logger name="com.baomidou.mybatisplus" level="warn" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+        <Logger name="org.mybatis" level="info" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+
+        <!-- 打印SQL（开发时打开，生产关闭） -->
+        <Logger name="com.example.mapper" level="debug" additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+
+        <!-- ====================== 根日志 ====================== -->
+        <Root level="info">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="ALL_FILE"/>
+            <AppenderRef ref="ERROR_FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>
